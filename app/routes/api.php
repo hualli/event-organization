@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\EventController;
+use App\Http\Controllers\InscriptionController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AuthController;
 
@@ -15,6 +16,12 @@ Route::middleware('auth:sanctum')->group(function () {
         Route::get('/{id}', [EventController::class, 'show'])->middleware('ability:event-show');
         Route::put('/{id}', [EventController::class, 'update'])->middleware('ability:event-update');
         Route::delete('/{id}', [EventController::class, 'destroy'])->middleware('ability:event-destroy');
+    });
+
+    // Inscriptions
+    Route::prefix('inscriptions')->group(function () {
+        Route::post('/', [InscriptionController::class, 'store'])->middleware('ability:inscription-store');
+        Route::get('/{id}', [InscriptionController::class, 'getInscriptionsByUser'])->middleware('ability:inscription-show');
     });
 
 });

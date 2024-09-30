@@ -42,6 +42,8 @@ class AuthService{
             $abilities = [
                 'event-index',
                 'event-show',
+                'inscription-store',
+                'inscription-show',
             ];
         }
 

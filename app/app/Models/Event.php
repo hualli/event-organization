@@ -4,6 +4,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\HasMany;
 
 class Event extends Model
 {
@@ -18,4 +19,9 @@ class Event extends Model
         'location',
         'status',
     ];
+
+    public function inscriptions(): HasMany
+    {
+        return $this->hasMany(Inscription::class);
+    }
 }
