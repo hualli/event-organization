@@ -10,11 +10,11 @@ Route::middleware('auth:sanctum')->group(function () {
 
     // Events
     Route::prefix('events')->group(function () {
-        Route::get('/', [EventController::class, 'index']);
-        Route::post('/', [EventController::class, 'store']);
-        Route::get('/{id}', [EventController::class, 'show']);
-        Route::put('/{id}', [EventController::class, 'update']);
-        Route::delete('/{id}', [EventController::class, 'destroy']);
+        Route::get('/', [EventController::class, 'index'])->middleware('ability:event-index');
+        Route::post('/', [EventController::class, 'store'])->middleware('ability:event-store');
+        Route::get('/{id}', [EventController::class, 'show'])->middleware('ability:event-show');
+        Route::put('/{id}', [EventController::class, 'update'])->middleware('ability:event-update');
+        Route::delete('/{id}', [EventController::class, 'destroy'])->middleware('ability:event-destroy');
     });
 
 });

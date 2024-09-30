@@ -28,6 +28,23 @@ class AuthService{
      * @return string  returns token
      */
     public function getToken(User $user){
-        return $user->createToken('auth_token')->plainTextToken;
+        if($user->role == 'admin'){
+            $abilities = [
+                'event-index',
+                'event-store',
+                'event-show',
+                'event-update',
+                'event-destroy',
+            ];
+        }
+
+        if($user->role == 'user'){
+            $abilities = [
+                'event-index',
+                'event-show',
+            ];
+        }
+
+        return $user->createToken('auth_token',$abilities)->plainTextToken;
     }
 }
